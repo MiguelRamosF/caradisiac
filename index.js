@@ -31,80 +31,45 @@ async function saveCars() {
     //console.log(cars);
 }
 
+//saveCars()
+function readJson(){
+    var data=fs.readFileSync('cars.json', 'utf8');
+    var words=JSON.parse(data);
+    //console.log(words[2]);
 
+}
+readJson();
 
-
-saveCars()
-
-
-//Store all the brands received from the car - api in the caradisiac index (elasticsearch)
-// async function IndexBrands() {
-//     try {
-//         const brands = await getBrands()
-//         brands.map((brand, index) => {
-//             client.create({
-//                 index: 'caradisiac',
-//                 type: 'brands',
-//                 id: index,
-//                 body: {
-//                     name: brand,
-//                 }
-//             }, function (error, response) {
-//                 if (error) {
-//                     console.log(error);
-//                 }
-//                 else {
-//                     console.log("create", response);
-//                 }
-//             });
-//         })
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
 
 //Store all the models received from the car - api in the caradisiac index (elasticsearch)
-// async function IndexModels() {
-//     try {
-//         const brands = await getBrands()
-//         const promises = brands.map(async (brand) => {
-//             const models = await getModels(brand)
-//             return models
-//         })
+function IndexCars() {
+    var data=fs.readFileSync('cars.json', 'utf8');
+    var cars=JSON.parse(data);
+    cars.map((car,index) => {
+        client.create({
+            index: 'caradisiac',
+            type: 'cars',
+            id: index,
+            body: {
+                brand: car.brand,
+                image: car.image,
+                model: car.model,
+                volume: car.volume,
+                uuid: car.uuid,
+                name: car.name,
+            }
+        }, function (error, response) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log("create", response);
+            }
+        });
+    });
+}
 
-//         Promise.all(promises).then(models=>{
-//             console.log(models);
-//models.forEach(element=>{console.log(element)});
-// models.map((model, index) => {
-//     client.create({
-//         index: 'caradisiac',
-//         type: 'models',
-//         id: index,
-//         body: {
-//             brand: model.brand,
-//             image: model.image,
-//             model: model.model,
-//             volume: model.volume,
-//             uuid: model.uuid,
-//             name: model.name,
-//         }
-//     }, function (error, response) {
-//         if (error) {
-//             console.log(error);
-//         }
-//         else {
-//             console.log("create", response);
-//         }
-//     });
-// })     
-//         })
-
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
-// IndexModels()
+IndexCars()
 
 
 

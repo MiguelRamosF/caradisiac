@@ -1,0 +1,30 @@
+{
+  "name": "caradisiac",
+  "version": "1.0.0",
+  "description": "an api that get the list of cars with the higher rate and the higher volume (caradisiac.com)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelRamosF/caradisiac.git"
+  },
+  "author": "Miguel Ramos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiguelRamosF/caradisiac/issues"
+  },
+  "homepage": "https://github.com/MiguelRamosF/caradisiac#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "elasticsearch": "^14.2.1",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "jsonfile": "^4.0.0",
+    "node-car-api": "git+https://github.com/92bondstreet/node-car-api.git"
+  }
+}

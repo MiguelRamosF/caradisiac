@@ -3,15 +3,45 @@ const bodyParser = require('body-parser');
 const fs = require("fs");
 const { getBrands } = require('node-car-api');
 const { getModels } = require('node-car-api');
+var documents = require('./routes/documents');  
+var elastic = require('elasticsearch');
+// set up express app
+const app = express();
+app.use('/documents', documents);
 
-const Brands = require('./models/brands');
+elastic.indexExists().then(function (exists) {  
+    if (exists) {
+      return elastic.deleteIndex();
+    }
+  }).then(function () {
+    return elastic.initIndex().then(elastic.initMapping).then(function () {
+      //Add a few titles for the autocomplete
+      //elasticsearch offers a bulk functionality as well, but this is for a different time
+      var promises = [
+        'Thing Explainer',
+        'The Internet Is a Playground',
+        'The Pragmatic Programmer',
+        'The Hitchhikers Guide to the Galaxy',
+        'Trial of the Clone'
+      ].map(function (bookTitle) {
+        return elastic.addDocument({
+          title: bookTitle,
+          content: bookTitle + " content",
+          metadata: {
+            titleLength: bookTitle.length
+          }
+        });
+      });
+      return Promise.all(promises);
+    });
+  });
+  
 
-
-var elasticsearch = require('elasticsearch');
-var client = new elasticsearch.Client({
-    host: 'localhost:9200',
-    log: 'trace'
-});
+// var elasticsearch = require('elasticsearch');
+// var client = new elasticsearch.Client({
+//     host: 'localhost:9200',
+//     log: 'trace'
+// });
 
 
 async function saveCars() {
@@ -38,7 +68,7 @@ function readJson(){
     //console.log(words[2]);
 
 }
-readJson();
+//readJson();
 
 
 //Store all the models received from the car - api in the caradisiac index (elasticsearch)
@@ -69,7 +99,7 @@ function IndexCars() {
     });
 }
 
-IndexCars()
+//IndexCars()
 
 
 

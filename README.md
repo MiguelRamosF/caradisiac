@@ -1,9 +1,9 @@
 # CARADISIAC
 
-Before starting the server, check your elasticsearch server is running and listenning the port 9200
+**Before starting the server**, check your elasticsearch server is running and listenning the port 9200
 
 
-To run the server, follow these commands:
+**To run the server**, follow these commands:
 
 ```sh
 npm install
@@ -11,14 +11,14 @@ cd server
 node server.js
 ```
 
-To test the API, go to :
+**To test the API**, go to :
 
 `localhost:9292/api/cars`
 
 It allows you to get the cars with the highest car boot volume
 
 
-Before populate:
+**Before populate:**
 
 You can update the cars.json file by running:
 
@@ -26,19 +26,19 @@ You can update the cars.json file by running:
 cd server/populate
 node cars.js
 ```
-Then go to:
+**Then go to**:
 
 `localhost:9292/api/populate`
 
 It allows you to index the updated cars models to elasticsearch
 
-Screenshots:
+**Screenshots**:
 
-![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture01.JPG)
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture01.JPG)
 
 
 
-![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture02.JPG)
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture02.JPG)
 
 
 

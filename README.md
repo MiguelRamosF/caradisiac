@@ -20,7 +20,7 @@ It allows you to get the cars with the highest car boot volume
 
 **Before populate:**
 
-You can update the cars.json file by running:
+You can update the cars.json file by running (it takes around 3min):
 
 ```sh
 cd server/populate
@@ -34,10 +34,14 @@ It allows you to index the updated cars models to elasticsearch
 
 **Screenshots**:
 
+`localhost:9292/api/cars`
 ![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture01.JPG)
 
+`Updating cars.json`
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture03.JPG)
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture04.JPG)
 
-
+`localhost:9292/api/populate`
 ![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture02.JPG)
 
 

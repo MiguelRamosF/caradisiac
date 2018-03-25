@@ -92,7 +92,7 @@ exports.getCars = getCars;
 //Index Json cars into elasticsearch (bulk for more than 200 entries)
 function bulkCars() {
     const cars = [];
-    var data=fs.readFileSync('./populate/cars479.json', 'utf8');
+    var data=fs.readFileSync('./populate/cars.json', 'utf8');
     var carsJSON=JSON.parse(data);
     for(var i=0;i<carsJSON.length;i++){
         cars.push({index:{_index:indexName, _type:typeName, _id: i}})

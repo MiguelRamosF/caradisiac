@@ -21,3 +21,5 @@ async function saveCars() {
     console.log(cars);
     console.log("Total of " + cars.length + "cars added to cars.json");
 }
+
+saveCars()

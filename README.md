@@ -34,11 +34,11 @@ It allows you to index the updated cars models to elasticsearch
 
 Screenshots:
 
-![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture01.PNG)
+![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture01.JPG)
 
 
 
-![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture02.PNG)
+![capture](https://github.com/MiguelRamosF/caradisiac/img/Capture02.JPG)
 
 
 

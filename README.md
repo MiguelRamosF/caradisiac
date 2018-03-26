@@ -32,6 +32,11 @@ node cars.js
 
 It allows you to index the updated cars models to elasticsearch
 
+**You can check and test the results in client-side made with React**:
+**Go to**:
+`localhost:9292/index.html`
+
+
 **Screenshots**:
 
 `localhost:9292/api/cars`
@@ -45,6 +50,10 @@ It allows you to index the updated cars models to elasticsearch
 ![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture02.JPG)
 
 
+`localhost:9292/index.html`
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture05.JPG)
+
+![capture](https://github.com/MiguelRamosF/caradisiac/blob/master/img/Capture06.JPG)
 
 
 

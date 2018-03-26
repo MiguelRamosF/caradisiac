@@ -6,6 +6,9 @@ var elastic = require('./elasticsearch');
 const app = express();
 app.use('/api',require('./routes/api'));
 
+//set up static files
+app.use(express.static('../public'));
+
 app.listen(9292, function () {
     console.log('Listening server on port 9292');
 });

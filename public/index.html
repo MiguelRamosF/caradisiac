@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Caradisiac App</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+    <section>
+        <h1 class="title">Caradisiac App</h1>
+        <br/>
+        <br/>
+        <br/>
+        <div id="root"></div>
+
+    </section>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+    <!-- Create React Component -->
+    <script type="text/babel">
+        var Cars = React.createClass({
+
+            getInitialState: function(){
+                return({
+                    Cars: []
+                });
+            },
+            render: function(){
+                var Cars = this.state.Cars;
+                Cars = Cars.map((city,index)=>{
+                    return(
+                        <div className="col-md-4" key={index}>
+                            <div className="card card-01">
+                                <img className="card-img-top" src={city._source.image} alt="Card image cap"></img>
+                                <div className="card-body">
+                                    <span className="badge-box"><i className="fa fa-carr">{city._source.volume}</i></span>
+                                    <h4 className="card-title">{city._source.brand}</h4>
+                                    <p className="card-text">{city._source.name}</p>
+                                    <a href="http://www.caradisiac.com/" className="btn btn-default text-uppercase">Caradisiac.com !</a>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                });
+                return(
+                    <div className="container">
+                        <label >Display cars with high boot volume : ( endpoint api/cars )</label>
+                        <form id="Search" onSubmit={this.handleSubmitCars}>
+                            <input class="form-control" type="submit" value="Cars" />
+                        </form>
+                        <label >Insert new records to ElasticSearch : ( endpoint api/populate )</label>
+                        <form id="Search" onSubmit={this.handleSubmitPopulate}>
+                            <input class="form-control" type="submit" value="Populate" />
+                        </form>
+                        <div className="row">
+                            {Cars}  
+                        </div>
+                    </div>                
+                );
+            },
+
+            handleSubmitCars: function(e){
+                e.preventDefault();
+                fetch('/api/cars').then(function(data){
+                    return data.json();
+                })
+                    .then( json => {
+                        //console.log(json.hits.hits[0]._source.brand);
+                        this.setState({
+                            Cars: json.hits.hits
+                        });    
+                    });
+            },
+
+            handleSubmitPopulate: function(e){
+                e.preventDefault();
+                fetch('/api/populate').then(function(data){
+                    return data.json();
+                })
+                    .then( json => {
+                        alert( json.items.length + ' new cars updated' );  
+                    });
+            },
+
+        });
+        ReactDOM.render(<Cars />, document.getElementById('root'));
+        </script>
+
+</body>
+</html>
